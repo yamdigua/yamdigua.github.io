@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpirderMan</title>
+    <script src="jquery-3.3.1.min.js"></script>
+    <style> 
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #333;
+        }
+        .wrap{
+
+            display: flex;
+            width: 90vw;
+        }
+        .card{
+            background-size: auto 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 50px;
+            color: #fff;
+            flex: 0.5;
+            cursor: pointer;
+            height: 80vh;
+            position: relative;
+            margin: 10px;
+            transition: flex 0.7s cubic-bezier(0.05,0.6,0.4,0.9);
+        }
+
+        .card h3{
+            font-size: 20px;
+            writing-mode: vertical-lr;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            margin: 0;
+            transform: opacity 0.3s ease-in 0.4s;
+        }
+
+        .card.active{
+            flex: 5;
+        }
+        .card.active h3{
+            opacity: 1;
+            writing-mode: horizontal-tb;
+            transform: opacity 0.3s ease-in 0.4s;
+        }
+        @media(max-width:500px){
+            .wrap{
+                width: 100vw;
+            }
+  
+        }
+
+        .img{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-image: url(images/money.png);
+            background-size: cover;
+        }
+        .img2{
+            width: 56px;
+            height: 76px;
+            position: absolute;
+            background-image: url(images/ltspider.png);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div onclick="window.open('https://xmmi.xyz/vodplay/228582-2-1.html');" class="card" style="background-image: url(images/Spider-man3.jpg);">
+            <h3>蜘蛛侠 : 英雄无归</h3>
+        </div>
+        <div onclick="window.open('https://xmmi.xyz/voddetail/143453.html');" class="card" style="background-image: url(images/Spider-man222.jpg);">
+            <h3>蜘蛛侠 : 英雄远征</h3>
+        </div>
+        <div onclick="window.open('https://xmmi.xyz/voddetail/151367.html');" class="card" style="background-image: url(images/Spider-man.jpg);">
+            <h3>蜘蛛侠 : 英雄归来</h3>
+        </div>
+        <div onclick="window.open('https://xmmi.xyz/voddetail/151244.html');" onclick="window.open('');" class="card" style="background-image: url(images/AmazingSpider.jpg);">
+            <h3>超凡蜘蛛侠2</h3>
+        </div>
+        <div onclick="window.open('https://xmmi.xyz/voddetail/102835.html');" class="card" style="background-image: url(images/AmazingSpider2.jpg);">
+            <h3>超凡蜘蛛侠</h3>
+        </div>
+        <div onclick="window.open('https://www.zxzj.fun/detail/622.html');"class="card" style="background-image: url(images/Spider3333.jpg);">
+            <h3>蜘蛛侠3</h3>
+        </div>
+        <div onclick="window.open('https://www.zxzj.fun/detail/621.html');" class="card" style="background-image: url(images/spider22.jpg);">
+            <h3>蜘蛛侠2</h3>
+        </div>
+        <div onclick="window.open('https://www.zxzj.fun/detail/620.html');" class="card" style="background-image: url(images/Spider1.jpg);">
+            <h3>蜘蛛侠</h3>
+        </div>
+
+        <div class="img"></div>
+        <div class="img2"></div>
+    </div>
+    <script>
+        var warp = document.getElementsByClassName('wrap')[0];
+        var cards = warp.getElementsByClassName('card');
+        var time=8;
+        for(var i = 0; i < cards.length;i++){
+            cards[i].addEventListener('mouseover',function(){
+                removeActive();
+                this.className = "card active"
+                console.log(i)
+            })
+        }
+
+
+        function removeActive(){
+            for(var i=0; i<cards.length;i++){
+                cards[i].className = "card";
+            }
+        }
+
+
+        let img = document.querySelector('.img')
+        let img2 = document.querySelector('.img2')
+        let deg = 0
+        let imgx = 0
+        let imgy = 0
+        let imgl = 0
+        let imgt = 0
+        let y = 0 
+        let index = 0
+
+        window.addEventListener('mousemove',function(xyz){
+            imgx = xyz.x - img.offsetLeft - img.clientWidth /2
+            imgy = xyz.y - img.offsetTop - img.clientHeight /2
+            deg = 360*Math.atan(imgy/imgx)/(2*Math.PI)
+            index= 0
+            let x = event.clientX
+            if(img.offsetLeft<x){
+                y=-180
+            }else{
+                y=0
+            }
+        })
+
+       
+        setInterval(()=>{
+            img.style.transform = "rotateZ("+deg+"deg) rotateY("+y+"deg)"
+            img2.style.transform = "rotateZ("+deg+"deg) rotateY("+y+"deg)"
+            index++
+            if(index<50){
+                imgl+=imgx/50
+                imgt+=imgy/50
+            }
+            img.style.left = imgl+"px"
+            img.style.top = imgt+"px"
+            img2.style.left = imgl-100+"px"
+            img2.style.top = imgt+20+"px"
+        },10)
+        
+    </script>
+</body>
+</html>
