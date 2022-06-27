@@ -20,14 +20,6 @@ function show(){
     // 给松鼠添加一个展示的样式,并且隐藏它的 隐藏样式
     $(mouse).addClass('show').removeClass('hide');
     // 这里如果我们不去打松鼠,他也会自己钻回洞里
-
-// 创建一个定时生成松鼠的方法
-function play(){
-    show();
-    show();
-}
-setInterval(play,2000);
-
     function hide(){
         //添加隐藏class 移除显示class
          $(mouse).addClass('hide').romoveClass('show');
@@ -35,6 +27,12 @@ setInterval(play,2000);
     // 定时去调用隐藏的方法 ,2s后隐藏
     setTimeout(hide,2000);
 }
+// 创建一个定时生成松鼠的方法
+function play(){
+    show();
+    show();
+}
+setInterval(play,2000);
 // 给松鼠添加一个点击事件让他被打的时候消失,并且分数+1
 $('img').on('click',function(){
     // this 指向的是被点击到的图片
